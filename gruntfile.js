@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         requirejs: {
             local: {
                 options: {
-                    name: 'app',
+                    name: 'main',
                     baseUrl: 'js',
                     mainConfigFile: 'js/main.js',
                     out:'js/build/script.js',
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     // Default task(s).
-    grunt.registerTask('default', ['requirejs']);
+    grunt.registerTask('default', ['requirejs:local']);
 
 
 
