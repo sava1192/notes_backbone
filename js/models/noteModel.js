@@ -7,7 +7,7 @@ define([
     var Note = backbone.Model.extend({
         defaults: {
             title: 'note ',
-            text : 'note text should be here'
+            content : 'note text should be here'
         },
 
         initialize: function () {
