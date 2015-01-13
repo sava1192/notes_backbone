@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         },
         watch: {
             scripts: {
-                files: ['**/*.js', '!build/', '!**/node_modules/**'],
+                files: ['**/*.js', '!build/*.*', '!**/node_modules/**'],
                 tasks: ['requirejs:dev']
             },
             less: {

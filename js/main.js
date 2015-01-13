@@ -3,10 +3,11 @@
 require.config({
     baseUrl: 'js',
     paths: {
-        jquery                 : 'lib/jquery',
-        underscore             : 'lib/underscore',
-        backbone               : 'lib/backbone',
-        'backbone.localstorage': 'lib/backbone.localstorage',
+        jquery                 : 'lib/jquery/jquery',
+        underscore             : 'lib/underscore/underscore',
+        backbone               : 'lib/backbone/backbone',
+        'backbone.localstorage': 'lib/backbone/localstorage',
+        'text'                 : 'lib/require/text',
         init                   : 'init'
     }
 
