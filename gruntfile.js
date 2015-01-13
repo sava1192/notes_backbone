@@ -3,16 +3,7 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        // concat: {
-        //     dist: {
-        //         src : [
-        //             'js/lib/*.js', // libs
-        //             'js/init.js',
-        //             'js/app.js'
-        //         ],
-        //         dest: 'js/build/production.js'
-        //     }
-        // },
+
         requirejs: {
             dev: {
                 options: {
@@ -27,20 +18,26 @@ module.exports = function(grunt) {
                 }
             },
             cdn: {
-                // options: {
-                //     paths: {
-                //         //'jquery': 'empty:'
-                //     }
-                // }
-
                 //do later: CDN support and settings
             }
         },
         less: {
             dev: {
-                files: {
-                    'build/style.css': 'styles/app.less'
-                }
+                files: [{
+                    expand : true,
+                    cwd    : 'styles',
+                    src    : ['*.less'],
+                    dest   : 'build/styles',
+                    ext    : '.css'
+                    //'build/style.css': 'styles/app.less',
+                }]
+            }
+        },
+        concat_css: {
+            options : {},
+            all: {
+                src : ['build/styles/*.css'],
+                dest: 'build/styles.css'
             }
         },
         watch: {
@@ -51,24 +48,23 @@ module.exports = function(grunt) {
             less: {
                 files: ['styles/*.less'],
                 tasks: ['less']
+            },
+            css: {
+                files: ['build/styles/*.css'],
+                tasks: ['concat_css']
             }
         }
 
     });
 
-    // Load the plugin that provides the "uglify" task.
-    // grunt.loadNpmTasks('grunt-contrib-uglify');
-
-    // grunt.loadNpmTasks('grunt-contrib-concat');
 
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.loadNpmTasks('grunt-contrib-less');
 
-
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-    // Default task(s).
-    // grunt.registerTask('default', ['requirejs:dev', 'less']);
+
+    grunt.loadNpmTasks('grunt-concat-css');
 
     grunt.registerTask('default', ['watch']);
 
