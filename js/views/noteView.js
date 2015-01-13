@@ -8,22 +8,25 @@ define([
     'use strict';
 
     var NoteView = Backbone.View.extend({
-        tagname: 'div',
         template: _.template(template),
         render: function () {
             var event = this.model.get('event');
 
-            this.$el = $(this.template(this.model.toJSON()));
+            this.$el = $(this.template(this.model.toJSON())).click(this.click);
+            this.el  = this.$el[0];
 
             if (event && event.offsetX & event.offsetY){
                 this.$el.offset({
                     top  : event.offsetY,
                     left : event.offsetX
                 });
-                console.log(event.offsetY, event.offsetX);
             }
 
-            return this.$el;
+            return this;
+        },
+        click: function (e) {
+            e.stopPropagation();
+            e.preventDefault();
         }
     });
 

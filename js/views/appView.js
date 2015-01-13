@@ -20,12 +20,12 @@ define([
         addNoteView: function (noteModel) {
             var view = new NoteView({model:noteModel});
 
-            this.$el.append(view.render());
+            this.$el.append(view.render().el);
         },
 
         click: function (e) {
-
             noteCollection.create({event: e});
+            return this;
         }
     });
 
