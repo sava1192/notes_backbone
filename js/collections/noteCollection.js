@@ -2,14 +2,14 @@ define([
     'backbone',
     'backbone.localstorage',
     'models/noteModel'
-], function (backbone, Storage, Note) {
+], function (backbone, Storage, noteModel) {
     'use strict';
 
     var NoteCollection = backbone.Collection.extend({
-        model: Note,
+        model: noteModel,
         localStorage: new Storage('NoteCollection')
     });
 
-    return NoteCollection;
+    return new NoteCollection();
 
 });

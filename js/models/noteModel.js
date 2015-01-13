@@ -1,7 +1,6 @@
 define([
-    'backbone',
-    'collections/noteCollection'
-], function (backbone, notes) {
+    'backbone'
+], function (backbone) {
     'use strict';
 
     var Note = backbone.Model.extend({
