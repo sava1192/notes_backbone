@@ -9,11 +9,18 @@ define([
 
     var NoteView = Backbone.View.extend({
         template: _.template(template),
+        events: {
+            'click': 'click',
+            'click button.close': 'close'
+        },
+        initialize: function () {
+            this.listenTo(this.model, 'destroy', this.remove);
+        },
         render: function () {
             var event = this.model.get('event');
 
-            this.$el = $(this.template(this.model.toJSON())).click(this.click);
-            this.el  = this.$el[0];
+            this.$el.html(this.template(this.model.attributes)).addClass('note');
+
 
             if (event && event.offsetX & event.offsetY){
                 this.$el.offset({
@@ -27,6 +34,9 @@ define([
         click: function (e) {
             e.stopPropagation();
             e.preventDefault();
+        },
+        close: function () {
+            this.model.destroy();
         }
     });
 
