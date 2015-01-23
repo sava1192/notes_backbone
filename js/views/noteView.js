@@ -3,7 +3,8 @@ define([
     'models/noteModel',
     'underscore',
     'jquery',
-    'text!templates/noteTemplate.html'
+    'text!templates/noteTemplate.html',
+    'jquery.extensions'
 ], function (Backbone, model, _, $, template) {
     'use strict';
 
@@ -17,10 +18,13 @@ define([
             this.listenTo(this.model, 'destroy', this.remove);
         },
         render: function () {
-            var event = this.model.get('event');
+            var event = this.model.get('event'),
+                $el   = this.$el;
 
-            this.$el.html(this.template(this.model.attributes)).addClass('note');
-
+            this.$el.
+                html(this.template(this.model.attributes)).
+                addClass('note').
+                children('.head').drags({handle:$el});
 
             if (event && event.offsetX & event.offsetY){
                 this.$el.offset({
