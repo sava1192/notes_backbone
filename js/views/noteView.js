@@ -12,7 +12,7 @@ define([
         template: _.template(template),
         events: {
             'click': 'click',
-            'click button.close': 'close',
+            'click .close': 'close',
             'blur .title': 'saveTitle',
             'blur .content': 'saveContent'
         },

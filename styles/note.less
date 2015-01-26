@@ -1,5 +1,5 @@
-.note{
-    position:absolute;
+.note {
+    position: absolute;
     width: 250px;
     height: 250px;
     background-color: yellow;
@@ -9,48 +9,79 @@
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 2% / 50%;
     font: 13px "Lucida Grande", Serif;
-
     .head {
-        .panel{
+        .panel {
             text-align: right;
+            min-height: 30px;
         }
     }
-
     textarea {
         background-color: transparent;
         resize: horizontal;
         width: 100%;
         border: none;
-
         &.title {
             min-height: 30px;
         }
-
         &.content {
             min-height: 200px;
         }
     }
 }
-
-.note:before,
-.note:after {
-  content: '';
-  z-index: -1;
-  position: absolute;
-  left: 20px;
-  bottom: 10px;
-  width: 70%;
-  max-width: 300px;
-  max-height: 100px;
-  height: 55%;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  transform: skew(-15deg) rotate(-6deg);
+.note:before, .note:after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    width: 70%;
+    max-width: 300px;
+    max-height: 100px;
+    height: 55%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: skew(-15deg) rotate(-6deg);
 }
-
 .note:after {
-  left: auto;
-  right: 20px;
-  transform: skew(15deg) rotate(6deg);
+    left: auto;
+    right: 20px;
+    transform: skew(15deg) rotate(6deg);
 }
-
-
+.close {
+    box-sizing: border-box;
+    display: inline-block;
+    float: right;
+    width: 22px;
+    height: 22px;
+    background-color: transparent;
+    box-shadow: inset 0px 0px 0px 2px #006e93;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.5s;
+}
+.close:after, .close:before {
+    position: absolute;
+    content: "";
+    background-color: #006e93;
+}
+.close:after {
+    width: 2px;
+    height: 10px;
+    top: 6px;
+    left: 10px;
+    transform: rotate(45deg);
+}
+.close:before {
+    width: 10px;
+    height: 2px;
+    top: 10px;
+    left: 6px;
+    transform: rotate(45deg);
+}
+.close:hover {
+    background: #e60500;
+    box-shadow: none;
+}
+.close:hover:after, .close:hover:before {
+    background: #faf3d6;
+}

@@ -11,7 +11,7 @@ define([
         el: '#notesapp',
         events: {
             'click' : 'click',
-            'click .closeAll': 'closeAll'
+            'click #closeAll': 'closeAll'
         },
 
         initialize: function () {
