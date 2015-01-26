@@ -18,12 +18,18 @@ define([
             this.listenTo(this.model, 'destroy', this.remove);
         },
         render: function () {
-            var $el   = this.$el;
+            var $el   = this.$el,
+                model = this.model;
 
-            this.$el.
+            $el.
                 html(this.template(this.model.attributes)).
                 addClass('note').
-                children('.head').drags({handle:$el}).end().
+                children('.head').drags({
+                    handle:$el,
+                    ondragstop: function (e) {
+                        model.save('offset', $(e.target).offset());
+                    }
+                }).end().
                 offset(this.model.get('offset'));
 
             return this;
