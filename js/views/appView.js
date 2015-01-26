@@ -10,7 +10,8 @@ define([
     var AppView = backbone.View.extend({
         el: '#notesapp',
         events: {
-            'click' : 'click'
+            'click' : 'click',
+            'click .closeAll': 'closeAll'
         },
 
         initialize: function () {
@@ -23,7 +24,19 @@ define([
             var view = new NoteView({model:noteModel});
             this.$el.append(view.render().el);
         },
+        closeAll: function (e) {
+            var model = noteCollection.first();
 
+            while (model) {
+                model.destroy();
+                model = noteCollection.first();
+            }
+
+            if (e){
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        },
         click: function (e) {
             noteCollection.create({
                 offset: {
