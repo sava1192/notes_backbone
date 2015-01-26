@@ -1,8 +1,10 @@
 <div class="head">
-    <span class="title"><%= title %></span>
-    <button class="close">X</button>
+    <div class="panel">
+        <button class="close">X</button>
+    </div>
+    <textarea name="title" placeholder="title for your note" class="title" value><%= title%></textarea>
 </div>
 <div class="body">
-    <div class="content"><%= content%></div>
+    <textarea name="content" placeholder="type text of your note here" class="content"><%= content%></textarea>
 </div>
 

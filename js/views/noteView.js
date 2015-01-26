@@ -12,7 +12,9 @@ define([
         template: _.template(template),
         events: {
             'click': 'click',
-            'click button.close': 'close'
+            'click button.close': 'close',
+            'blur .title': 'saveTitle',
+            'blur .content': 'saveContent'
         },
         initialize: function () {
             this.listenTo(this.model, 'destroy', this.remove);
@@ -24,19 +26,29 @@ define([
             $el.
                 html(this.template(this.model.attributes)).
                 addClass('note').
-                children('.head').drags({
+                find('.panel').drags({
                     handle:$el,
                     ondragstop: function (e) {
                         model.save('offset', $(e.target).offset());
+                        $el.css('z-index', 'auto');//!!! temporary fix for note shadows
                     }
                 }).end().
                 offset(this.model.get('offset'));
+
+            this.$content = $el.find('.content');
+            this.$title   = $el.find('.title');
 
             return this;
         },
         click: function (e) {
             e.stopPropagation();
             e.preventDefault();
+        },
+        saveTitle : function () {
+            this.model.save('title', this.$title.val());
+        },
+        saveContent : function () {
+            this.model.save('content', this.$content.val());
         },
         close: function () {
             this.model.destroy();

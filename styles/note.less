@@ -3,8 +3,6 @@
     width: 250px;
     height: 250px;
     background-color: yellow;
-
-
     background: linear-gradient(#FEFCAF, #FFFEDA);
     padding: 5px 20px 10px 20px;
     width: 250px;
@@ -13,6 +11,26 @@
     border-radius: 2% / 50%;
     font: 13px "Lucida Grande", Serif;
 
+    .head {
+        .panel{
+            text-align: right;
+        }
+    }
+
+    textarea {
+        background-color: transparent;
+        resize: horizontal;
+        width: 100%;
+        border: none;
+
+        &.title {
+            min-height: 30px;
+        }
+
+        &.content {
+            min-height: 200px;
+        }
+    }
 }
 
 .note:before,
@@ -36,6 +54,4 @@
   transform: skew(15deg) rotate(6deg);
 }
 
-button.close {
-    float: right;
-}
+
