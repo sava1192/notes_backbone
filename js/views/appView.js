@@ -15,16 +15,22 @@ define([
 
         initialize: function () {
             this.listenTo(noteCollection, 'add', this.addNoteView);
+
+            noteCollection.fetch();
         },
 
         addNoteView: function (noteModel) {
             var view = new NoteView({model:noteModel});
-
             this.$el.append(view.render().el);
         },
 
         click: function (e) {
-            noteCollection.create({event: e});
+            noteCollection.create({
+                offset: {
+                    left: e.offsetX,
+                    top : e.offsetY
+                }
+            });
             return this;
         }
     });
