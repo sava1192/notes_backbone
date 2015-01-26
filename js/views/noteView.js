@@ -29,9 +29,9 @@ define([
                 find('.panel').drags({
                     handle:$el,
                     ondragstop: function (e) {
-                        model.save('offset', $(e.target).offset());
-                        $el.css('z-index', 'auto');//!!! temporary fix for note shadows
-                    }
+                        model.save('offset', $el.offset());
+                    },
+                    zIndex: 'auto'
                 }).end().
                 offset(this.model.get('offset'));
 
